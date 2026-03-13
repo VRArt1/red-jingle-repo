@@ -28,10 +28,13 @@ with open('banner_dir/banner.bcwav','wb') as f:
     rm -r partition0.cxi exefs.bin exefs_dir/ banner.bin banner_dir/
 
     FINAL=$(echo "$OUTPUT" \
+        | iconv -f utf-8 -t ascii//TRANSLIT \
         | sed "s/'//g" \
         | sed 's/([^)]*)//g' \
         | sed 's/ *- */-/g' \
         | sed 's/ /-/g' \
+        | sed 's/[^a-zA-Z0-9.\-]//g' \
+        | sed 's/\.\([^.]*\)$/EXTPLACEHOLDER\1/; s/\.//g; s/EXTPLACEHOLDER/./g' \
         | sed 's/--*/-/g' \
         | sed 's/^-//; s/-$//' \
         | sed 's/-\(\.[^.]*\)$/\1/' \
