@@ -165,5 +165,11 @@
       "name": "Yo-Kai Watch 3",
       "file": "jingles/n3ds/yo-kai-watch-3.wav"
     }
+  ],
+  "wii": [
+    {
+      "name": "Metroid Prime Trilogy",
+      "file": "jingles/wii/metroid-prime-trilogy.wav"
+    }
   ]
 }
