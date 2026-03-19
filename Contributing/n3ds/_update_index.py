@@ -13,19 +13,19 @@ try:
     with open(index_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
 except FileNotFoundError:
-    data = {"name": "Red's Jingles Pack", "entries": []}
+    data = {"name": "Red's Jingles Pack", "n3ds": []}
 
-entries = data.get("entries", [])
+n3ds = data.get("n3ds", [])
 
 # Remove any existing entry with the same file path (idempotent re-runs)
-entries = [e for e in entries if e.get("file") != jingle_path]
+n3ds = [e for e in n3ds if e.get("file") != jingle_path]
 
-entries.append({"game": game_title, "file": jingle_path})
+n3ds.append({"name": game_title, "file": jingle_path})
 
 # Sort alphabetically by game title (case-insensitive)
-entries.sort(key=lambda e: e["game"].lower())
+n3ds.sort(key=lambda e: e["name"].lower())
 
-data["entries"] = entries
+data["n3ds"] = n3ds
 
 with open(index_path, 'w', encoding='utf-8') as f:
     json.dump(data, f, indent=2, ensure_ascii=False)
